@@ -1,0 +1,23 @@
+{
+  "include": [
+    "./src/**/*"
+  ],
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "./built",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5",
+    "sourceMap": true,
+    "allowJs": true,
+    "allowUnreachableCode": false,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "typeRoots": [ "./typings" ],
+  },
+  "exclude": [
+    "./plugins/**/*",
+    "./typings/**/*",
+    "./built/**/*" // This is what fixed it!
+  ]
+}
