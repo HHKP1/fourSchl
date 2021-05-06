@@ -1,34 +1,49 @@
+import '@babel/polyfill'
+import 'mutationobserver-shim'
+import './plugins/bootstrap-vue'
 /* eslint-disable no-undef */
 import 'regenerator-runtime/runtime';
-import { createApp, Vue } from "vue";
+import { createApp, provide, h } from "vue";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { DefaultApolloClient } from '@vue/apollo-composable'
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 
 const defaultClient = new ApolloClient({
-  uri: "http://localhost:4000/graphql/",
+  uri: "https://rickandmortyapi.com/graphql/",
   cache: new InMemoryCache(),
 });
 
-const query = gql`
-  query {
-    characters {
-      results {
-        name,
-        gender
-      }
-    }
+// const query = gql`
+//   query {
+//     characters {
+//       results {
+//         name
+//         status
+//         species
+//         type
+//         gender
+//         image
+//       }
+//     }
+//   }
+// `;
+
+// defaultClient
+//   .query({
+//     query,
+//   })
+//   .then((res) => console.log(res));
+
+
+
+createApp({
+  setup () {
+    provide(DefaultApolloClient, defaultClient)
+  },
+  render() {
+    return h(App)
   }
-`;
-
-defaultClient
-  .query({
-    query,
-  })
-  .then((res) => console.log(res));
-
-
-
-createApp(App).use(store).use(router).mount("#app");
+}).use(store).use(router).mount("#app");
