@@ -1,4 +1,7 @@
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/fourSchl/'
+    : '/',
   chainWebpack: config => {
     config.module
       .rule('graphql')
