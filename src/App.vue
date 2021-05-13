@@ -1,22 +1,37 @@
 /* eslint-disable no-empty-pattern */
 /* eslint-disable no-empty-pattern */
 <template>
-  <div id="nav">
-    <router-link to="/">Головна</router-link> |
-    <router-link to="/about">Про нас</router-link> |
-    <router-link to="/team">Колектив</router-link> |
-    <router-link to="/contacts">Контакти</router-link>
+<div id="nav">
+    <transition-group
+    appear
+    @before-enter="beforeEnter"
+    @enter="enter"
+    >
+    
+    <div class='nav_links' v-for="(item, index) in navItems" :key="item.name" :data-index="index">
+      <router-link :to='{path: item.path}' :class='{nav_links: nav_links}'>{{ item.text }}</router-link>
+    </div>
+    
+    </transition-group>
   </div>
+  <!-- <transition
+  appear
+  @before-enter='beforeEnter'
+  @enter='enter'
+  :css='false'
+  >
+  <h1>{{ message }}</h1>
+  </transition> -->
   <router-view />
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <ul>
+  <ol start="0">
       <li v-for='char in chars' :key='char.id'>
         <a href='#'>{{ char.name }}</a>
         <img :src="char.image" style="object-fit:cover;max-width:5%;width:24px" alt="">
         <button @click="deleteAndUpdateCache(char.id)">delete</button>
       </li>
-  </ul>
+  </ol>
 </template>
 
 <script>
@@ -26,6 +41,8 @@ import { ref } from 'vue'
 import { useQuery, useResult, useMutation } from '@vue/apollo-composable'
 import allCharsQuery from './graphql/CharQuery.gql'
 import deleteCharMutation from './graphql/deleteChar.mutation.gql'
+import {gsap} from 'gsap'
+
 
 export default defineComponent({
   name: 'App',
@@ -33,6 +50,32 @@ export default defineComponent({
   //   HelloWorld
   // },
   setup() {
+    const beforeEnter = (el) => {
+      console.log('beforeEnter')
+      el.style.transform = 'translateY(-170px)'
+      el.style.transform = 'scaleX(0.8)'
+      el.style.opacity = 0
+    }
+    const enter = (el, done) => {
+      console.log('enter')
+      gsap.to(el,{
+        duration:.8,
+        y:0,
+        ease: 'power1.easeIn',
+        opacity:1,
+        scaleX: 1,
+        onComplete:done,
+        delay: el.dataset.index * 0.09
+      })
+    }
+    
+    const navItems = ref([
+      {name: 'Home', text: 'Головна', path: '/'},
+      {name: 'About', text: 'Про нас', path: '/about'},
+      {name: 'Team', text: 'Колектив', path: '/team'},
+      {name: 'Contacts', text: 'Контакти', path: '/contacts'},
+    ])
+
     const message = ref('Hello Jason!')
     const { result } = useQuery(allCharsQuery)
     console.log(result);
@@ -55,7 +98,7 @@ export default defineComponent({
       // TODO update the cache
     }
 
-    return { message, chars, deleteAndUpdateCache }
+    return { message, chars, deleteAndUpdateCache, beforeEnter, enter, navItems }
   },
 })
 </script>
@@ -70,13 +113,25 @@ export default defineComponent({
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+#nav{
+  padding: 30px 5px;
+  display: flex;
+  justify-content: center;
 }
 
+.nav_links{
+  margin: 0 15px !important
+}
 #nav a {
   font-weight: bold;
+  transform: translate(-200px, 0);
   color: #2c3e50;
+  text-decoration:none;
+  transition: all .6s ease-in-out;
+}
+#nav a:hover{
+  text-decoration: underline;
+  transition: all .2s ease-in-out;
 }
 
 #nav a.router-link-exact-active {

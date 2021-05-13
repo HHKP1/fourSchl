@@ -1,6 +1,3 @@
-import '@babel/polyfill'
-import 'mutationobserver-shim'
-import './plugins/bootstrap-vue'
 /* eslint-disable no-undef */
 import 'regenerator-runtime/runtime';
 import { createApp, provide, h } from "vue";
