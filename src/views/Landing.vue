@@ -1,6 +1,5 @@
 <template>
   <div>
-    <navbar />
     <main>
       <div
         class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75"
@@ -596,7 +595,7 @@
   </div>
 </template>
 <script>
-import Navbar from "@/components/Navbars/AuthNavbar.vue";
+// import Navbar from "@/components/Navbars/AuthNavbar.vue";
 import FooterComponent from "@/components/Footers/Footer.vue";
 
 import main_bg from "@/assets/img/main_bg.jpg";
@@ -617,7 +616,6 @@ export default {
   },
   mount() {},
   components: {
-    Navbar,
     FooterComponent,
   },
   methods: {
