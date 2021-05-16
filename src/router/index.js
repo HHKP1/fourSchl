@@ -18,17 +18,49 @@ const routes = [
     
   },
   {
-    path: "/team",
-    name: "Team",
+    path: "/auth",
+    redirect: "/auth/login",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Team.vue"),
-    
+      import(/* webpackChunkName: "about" */ "../layouts/Auth.vue"),
+    children: [
+      {
+        path: "/auth/login",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/auth/Login.vue"),
+      },
+      {
+        path: "/auth/register",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/auth/Register.vue"),
+      },
+    ],
   },
   {
     path: "/contacts",
     name: "Contacts",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Contacts.vue"),
+    
+  },
+  {
+    path: "/landing",
+    name: "Landing",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Landing.vue"),
+    
+  },
+  {
+    path: "/auth/register",
+    name: "Register",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/auth/Register.vue"),
+    
+  },
+  {
+    path: "/auth/login",
+    name: "Login",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/auth/Login.vue"),
     
   },
 ];

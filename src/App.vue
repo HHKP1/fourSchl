@@ -1,19 +1,19 @@
 /* eslint-disable no-empty-pattern */
-/* eslint-disable no-empty-pattern */
 <template>
-<div id="nav">
-    <transition-group
-    appear
-    @before-enter="beforeEnter"
-    @enter="enter"
-    >
+  <navbar />
+<!-- <div id="nav"> -->
+    <!-- <transition-group -->
+    <!-- appear -->
+    <!-- @before-enter="beforeEnter" -->
+    <!-- @enter="enter" -->
+    <!-- > -->
+    <!-- <Landing /> -->
+    <!-- <div class='nav_links' v-for="(item, index) in navItems" :key="item.name" :data-index="index">
+      <router-link :to='{path: item.path}' :components='{components: item.component}' :class='{nav_links: nav_links}'>{{ item.text }}</router-link>
+    </div> -->
     
-    <div class='nav_links' v-for="(item, index) in navItems" :key="item.name" :data-index="index">
-      <router-link :to='{path: item.path}' :class='{nav_links: nav_links}'>{{ item.text }}</router-link>
-    </div>
-    
-    </transition-group>
-  </div>
+    <!-- </transition-group> -->
+  <!-- </div> -->
   <!-- <transition
   appear
   @before-enter='beforeEnter'
@@ -25,16 +25,17 @@
   <router-view />
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <ol start="0">
+  <!-- <ol start="0">
       <li v-for='char in chars' :key='char.id'>
         <a href='#'>{{ char.name }}</a>
         <img :src="char.image" style="object-fit:cover;max-width:5%;width:24px" alt="">
         <button @click="deleteAndUpdateCache(char.id)">delete</button>
       </li>
-  </ol>
+  </ol> -->
 </template>
 
 <script>
+import Navbar from "@/components/Navbars/AuthNavbar.vue";
 import { defineComponent } from '@vue/composition-api'
 // import HelloWorld from './components/HelloWorld.vue'
 import { ref } from 'vue'
@@ -42,13 +43,14 @@ import { useQuery, useResult, useMutation } from '@vue/apollo-composable'
 import allCharsQuery from './graphql/CharQuery.gql'
 import deleteCharMutation from './graphql/deleteChar.mutation.gql'
 import {gsap} from 'gsap'
+import Landing from '@/views/Landing.vue'
 
 
 export default defineComponent({
   name: 'App',
-  // components: {
-  //   HelloWorld
-  // },
+  components: {
+    Navbar
+  },
   setup() {
     const beforeEnter = (el) => {
       console.log('beforeEnter')
@@ -68,9 +70,9 @@ export default defineComponent({
         delay: el.dataset.index * 0.09
       })
     }
-    
     const navItems = ref([
       {name: 'Home', text: 'Головна', path: '/'},
+      {name: 'Landing', text: 'Landing', path: "/landing", component: Landing},
       {name: 'About', text: 'Про нас', path: '/about'},
       {name: 'Team', text: 'Колектив', path: '/team'},
       {name: 'Contacts', text: 'Контакти', path: '/contacts'},
@@ -103,38 +105,4 @@ export default defineComponent({
 })
 </script>
 
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav{
-  padding: 30px 5px;
-  display: flex;
-  justify-content: center;
-}
-
-.nav_links{
-  margin: 0 15px !important
-}
-#nav a {
-  font-weight: bold;
-  transform: translate(-200px, 0);
-  color: #2c3e50;
-  text-decoration:none;
-  transition: all .6s ease-in-out;
-}
-#nav a:hover{
-  text-decoration: underline;
-  transition: all .2s ease-in-out;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style src="./assets/styles/app.css" />
