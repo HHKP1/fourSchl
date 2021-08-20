@@ -5,7 +5,8 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => 
+    import("../views/Landing.vue"),
   },
   {
     path: "/about",
@@ -39,28 +40,28 @@ const routes = [
     path: "/contacts",
     name: "Contacts",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Contacts.vue"),
+      import("../views/Contacts.vue"),
     
   },
-  {
-    path: "/landing",
-    name: "Landing",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Landing.vue"),
+  // {
+  //   path: "/landing",
+  //   name: "Landing",
+  //   component: () =>
+  //     import("../views/Landing.vue"),
     
-  },
+  // },
   {
     path: "/auth/register",
     name: "Register",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/auth/Register.vue"),
+      import("../views/auth/Register.vue"),
     
   },
   {
     path: "/auth/login",
     name: "Login",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/auth/Login.vue"),
+      import("../views/auth/Login.vue"),
     
   },
 ];

@@ -47,7 +47,7 @@
             <PagesDropdown />
           </li> -->
           <li class="flex items-center mr-2">
-            <router-link to="/landing" class="font-bold text-blueGray-500">
+            <router-link to="/" class="font-bold text-blueGray-500">
                 Головна
               </router-link>
           </li>

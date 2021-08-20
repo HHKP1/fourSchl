@@ -4,27 +4,30 @@
   "private": true,
   "scripts": {
     "apollo": "vue-cli-service apollo:watch",
-    "apolo:run": "vue-cli-service apollo:run",
+    "apollo:run": "vue-cli-service apollo:run",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "deploy": "gh-pages -d dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "5.15.3",
-    "tailwindcss": "2.0.4",
-    "@popperjs/core": "2.9.1",
-    "@tailwindcss/forms": "0.2.1",
     "@apollo/client": "^3.3.16",
+    "@fortawesome/fontawesome-free": "5.15.3",
+    "@popperjs/core": "^2.9.1",
+    "@tailwindcss/forms": "0.2.1",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
     "@vue/composition-api": "^1.0.0-rc.8",
+    "chart.js": "^3.5.0",
     "core-js": "^3.6.5",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4",
     "gsap": "^3.6.1",
     "react": "^17.0.2",
     "register-service-worker": "^1.7.1",
+    "tailwindcss": "2.0.4",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
+    "vuelidate": "^0.7.6",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
@@ -41,9 +44,6 @@
     "postcss": "8.2.8",
     "lint-staged": "^9.5.0",
     "vue-template-compiler": "2.6.12"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
   },
   "eslintConfig": {
     "root": true,
@@ -66,8 +66,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
-      "git add"
+      "vue-cli-service lint"
     ]
   }
 }
