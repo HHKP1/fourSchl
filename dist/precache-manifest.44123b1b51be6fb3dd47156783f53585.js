@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cb7440b144fe9a689e00",
+    "revision": "aac3c30b0a031940e2db",
     "url": "/fourSchl/css/app.c2f41d1c.css"
   },
   {
@@ -128,7 +128,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fourSchl/img/team-4-470x470.7d13384c.png"
   },
   {
-    "revision": "2d39ea22515de3696c2fece4ee99e2c6",
+    "revision": "ed56d3f4e1741d46c30b40b696476b3b",
     "url": "/fourSchl/index.html"
   },
   {
@@ -136,8 +136,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fourSchl/js/about.b5390819.js"
   },
   {
-    "revision": "cb7440b144fe9a689e00",
-    "url": "/fourSchl/js/app.b8ddc4e5.js"
+    "revision": "aac3c30b0a031940e2db",
+    "url": "/fourSchl/js/app.a4a37dbd.js"
   },
   {
     "revision": "adc7e155c7bce3f769cc",
